@@ -22,7 +22,7 @@ def text_to_code(key: str, text: str) -> str:
     seed = key_to_seed(key)
     rand.seed(seed)
 
-    code = ''
+    code = ''.join([LETTERS_TO_CODE[rand.randint(0, len(LETTERS_TO_CODE) - 1)] for i in range(rand.randint(0, 10))])
     for i in text:
         if i not in LETTERS_CAN_BE_USED:
             continue
@@ -41,7 +41,9 @@ def code_to_text(key: str, code: str) -> str:
     seed = key_to_seed(key)
     rand.seed(seed)
 
-    text = ''
+    text = ''.join([LETTERS_TO_CODE[rand.randint(0, len(LETTERS_TO_CODE) - 1)] for i in range(rand.randint(0, 10))])
+    code = code[len(text):]
+
     while code:
         n = rand.randint(1, 10)
 
