@@ -5,6 +5,7 @@ LETTERS_CAN_BE_USED += LETTERS_CAN_BE_USED.upper() + ''',.1234567890-=`~!@#$%^&*
 
 LETTERS_TO_CODE = LETTERS_CAN_BE_USED
 
+
 # print(LETTERS_TO_CODE)
 
 
@@ -34,7 +35,6 @@ def text_to_code(key: str, text: str) -> str:
 
         code += ''.join(n)
 
-
     return code
 
 
@@ -42,8 +42,9 @@ def code_to_text(key: str, code: str) -> str:
     seed = key_to_seed(key)
     rand.seed(seed)
 
-    text = ''.join([LETTERS_TO_CODE[rand.randint(0, len(LETTERS_TO_CODE) - 1)] for i in range(rand.randint(0, 50))])
-    code = code[len(text):]
+    text = ''
+    code = code[len(''.join([LETTERS_TO_CODE[rand.randint(0, len(LETTERS_TO_CODE) - 1)]
+                             for i in range(rand.randint(0, 50))])):]
 
     while code:
         n = rand.randint(1, 10)
@@ -78,6 +79,7 @@ if __name__ == '__main__':
           'Разкодировать - 1\n')
 
     num = 2
+    func = None
 
     try:
         num = int(input())
@@ -98,7 +100,3 @@ if __name__ == '__main__':
     f = open(ret[0][:-4] + '_' + ('de' if num else '') + 'code.txt', 'w', encoding='UTF-8')
     f.write(ret[1])
     f.close()
-
-
-
-
