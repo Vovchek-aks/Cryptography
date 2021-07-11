@@ -1,7 +1,7 @@
 import random as rand
 
 LETTERS_CAN_BE_USED = 'йцукенгшщзхъфывапролджэячсмитьбюёqwertyuiopasdfghjklzxcvbnm'
-LETTERS_CAN_BE_USED += LETTERS_CAN_BE_USED.upper() + ''',.1234567890-=`~!@#$%^&*()_+[]{};: '"\\|<>/?\n'''
+LETTERS_CAN_BE_USED += LETTERS_CAN_BE_USED.upper() + ''',.1234567890-=`~!@#$%^&*()_+[]{};: '"\\|<>/?\n—…'''
 
 LETTERS_TO_CODE = LETTERS_CAN_BE_USED
 
@@ -22,7 +22,7 @@ def text_to_code(key: str, text: str) -> str:
     seed = key_to_seed(key)
     rand.seed(seed)
 
-    code = ''.join([LETTERS_TO_CODE[rand.randint(0, len(LETTERS_TO_CODE) - 1)] for i in range(rand.randint(0, 10))])
+    code = ''.join([LETTERS_TO_CODE[rand.randint(0, len(LETTERS_TO_CODE) - 1)] for i in range(rand.randint(0, 50))])
     for i in text:
         if i not in LETTERS_CAN_BE_USED:
             continue
@@ -34,6 +34,7 @@ def text_to_code(key: str, text: str) -> str:
 
         code += ''.join(n)
 
+
     return code
 
 
@@ -41,7 +42,7 @@ def code_to_text(key: str, code: str) -> str:
     seed = key_to_seed(key)
     rand.seed(seed)
 
-    text = ''.join([LETTERS_TO_CODE[rand.randint(0, len(LETTERS_TO_CODE) - 1)] for i in range(rand.randint(0, 10))])
+    text = ''.join([LETTERS_TO_CODE[rand.randint(0, len(LETTERS_TO_CODE) - 1)] for i in range(rand.randint(0, 50))])
     code = code[len(text):]
 
     while code:
